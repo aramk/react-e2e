@@ -1,0 +1,41 @@
+.App {
+  font-family: sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+.ContactList {
+  text-align: left;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.ContactListSearch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  vertical-align: center;
+}
+
+.ContactListSearch input {
+  flex-grow: 1;
+  font-size: 12px;
+  padding: 3px 5px;
+  width: 200px;
+  vertical-align: center;
+}
+
+.ContactListSearchLabel {
+  margin-right: 10px;
+}
+
+.ContactItem {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
