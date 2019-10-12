@@ -23,18 +23,19 @@ export class ContactList extends React.Component {
             item.city.toLowerCase().includes(query))
         );
       })
-      .map(item => <ContactItem item={item} />);
+      .map((item, i) => <ContactItem key={i} item={item} />);
 
     const body =
       items.length > 0 ? items : <p>There are no items to display</p>;
 
     return (
       <div className="ContactList">
-        <div className="ContactListSearch">
+        <div className="ContactListSearch" key="search">
           <div className="ContactListSearchLabel">Search</div>
           <input onChange={this.onSearchChange} />
+          <button className="ContactListAdd" onClick={this.props.onAddClick}>Add</button>
         </div>
-        <div className="ContactListItems">{body}</div>
+        <div className="ContactListItems" key="items">{body}</div>
       </div>
     );
   }
@@ -43,5 +44,9 @@ export class ContactList extends React.Component {
     this.setState({
       query: event.currentTarget.value.trim(),
     });
+  };
+
+  onAdd = () => {
+
   };
 }
