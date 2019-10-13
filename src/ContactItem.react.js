@@ -4,7 +4,7 @@ export class ContactItem extends React.Component {
   render() {
     const {item} = this.props;
     return (
-      <div className="ContactItem">
+      <div className="ContactItem" onClick={this.onClick}>
         <div>
           <strong>{item.name}</strong>
         </div>
@@ -15,4 +15,9 @@ export class ContactItem extends React.Component {
       </div>
     );
   }
+
+  onClick = () => {
+    const {onClick} = this.props;
+    if (onClick) onClick(this.props.item);
+  };
 }

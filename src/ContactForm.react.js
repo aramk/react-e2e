@@ -34,7 +34,7 @@ export class ContactForm extends React.Component {
     return (
       <div className="ContactFormField">
         <label>{name}</label>
-        <input name={name} type="text" value={value} />
+        <input name={name} type="text" defaultValue={value} />
       </div>
     );
   };
@@ -61,7 +61,8 @@ export class ContactForm extends React.Component {
         return;
       }
       try {
-        const contact = {};
+        const existing = this.props.contact;
+        const contact = existing ? {...existing} : {};
         for (const field of FIELDS) {
           contact[field] = this.getInputValue(field);
           assertTextValue(field, contact[field]);

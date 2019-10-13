@@ -29,7 +29,7 @@ export class ContactList extends React.Component {
         return item.name;
       });
 
-      const renderedItems = sortedItems.map((item, i) => <ContactItem key={i} item={item} />);
+      const renderedItems = sortedItems.map((item, i) => <ContactItem key={i} item={item} onClick={this.props.onItemClick} />);
 
 
     const body = renderedItems.length > 0 ? renderedItems : <p>There are no items to display</p>;
