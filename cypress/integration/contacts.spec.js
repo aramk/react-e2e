@@ -10,8 +10,10 @@ context('Contacts', () => {
       cy.get('.ContactListItems')
         .find('.ContactItem')
         .first()
-        .should('contain', 'Bethany Thornton')
-        .should('contain', '(804) 849-5820')
+        .should('contain', 'Abdul Gonzales')
+        .should('contain', '(145) 551-5433')
+        .should('contain', '592 Nulla St.')
+        .should('contain', 'Eugene')
     });
   });
-})
+});
