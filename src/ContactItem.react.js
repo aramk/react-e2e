@@ -2,7 +2,7 @@ import React from 'react';
 
 export class ContactItem extends React.Component {
   render() {
-    const { item } = this.props;
+    const {item} = this.props;
     return (
       <div className="ContactItem">
         <div>
