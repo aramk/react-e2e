@@ -10,7 +10,8 @@
     "eject": "react-scripts eject",
     "format": "prettier --write 'src/**/*.js'",
     "cypress": "cypress open",
-    "jest": "jest --all --watch --no-watchman"
+    "jest": "jest --all --watch --no-watchman",
+    "wdio": "wdio run wdio.conf.js --watch"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,12 @@
   },
   "devDependencies": {
     "@wdio/cli": "^5.15.0",
+    "@wdio/local-runner": "^5.15.0",
+    "@wdio/mocha-framework": "^5.15.0",
+    "@wdio/spec-reporter": "^5.14.5",
+    "@wdio/sync": "^5.14.4",
+    "chai": "^4.2.0",
+    "chromedriver": "^77.0.0",
     "cypress": "^3.4.1",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
@@ -51,6 +58,8 @@
     "jest-cli": "^24.9.0",
     "prettier": "^1.18.2",
     "puppeteer": "^1.20.0",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "wdio-chromedriver-service": "^5.0.2",
+    "wdio-selenium-standalone-service": "0.0.12"
   }
 }
