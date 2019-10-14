@@ -122,7 +122,7 @@ class App extends React.Component {
   };
   
   onDeleteClick = (contact, history) => {
-    if (confirm('Are you sure you to remove this contact?')) {
+    if (window.confirm('Are you sure you to remove this contact?')) {
       this.setState(prevState => {
         debugger
         const index = prevState.contacts.findIndex(c => c.id === contact.id);
