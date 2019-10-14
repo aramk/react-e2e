@@ -11,9 +11,9 @@ const contacts = require('./contacts.json');
 class App extends React.Component {
   state = {
     formContact: {},
-    contacts: JSON.parse(JSON.stringify(contacts)).map(item => {
-      item.id = getNextId();
-      return item;
+    contacts: JSON.parse(JSON.stringify(contacts)).map(contact => {
+      contact.id = getNextId();
+      return contact;
     }),
     error: null,
   };
@@ -53,7 +53,8 @@ class App extends React.Component {
         <ContactList
           items={this.state.contacts}
           onAddClick={() => this.onAddClick(history)}
-          onItemClick={item => this.onItemClick(item, history)}
+          onEditClick={contact => this.onEditClick(contact, history)}
+          onDeleteClick={contact => this.onDeleteClick(contact, history)}
         />
       </>
     );
@@ -116,8 +117,23 @@ class App extends React.Component {
     history.push('/tasks/create');
   };
 
-  onItemClick = (item, history) => {
-    history.push(`/tasks/${item.id}/edit`);
+  onEditClick = (contact, history) => {
+    history.push(`/tasks/${contact.id}/edit`);
+  };
+  
+  onDeleteClick = (contact, history) => {
+    if (confirm('Are you sure you to remove this contact?')) {
+      this.setState(prevState => {
+        debugger
+        const index = prevState.contacts.findIndex(c => c.id === contact.id);
+        if (index === -1) {
+          return createMissingContactErrorState(contact.id);
+        }
+        const contacts = prevState.contacts.slice();
+        contacts.splice(index, 1);
+        return {contacts};
+      });
+    }
   };
 
   onEdit = (contact, history) => {
