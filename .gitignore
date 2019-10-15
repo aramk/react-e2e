@@ -1,4 +1,5 @@
 node_modules
+cypress/**/*.mp4
 
 # Compiled source #
 ###################

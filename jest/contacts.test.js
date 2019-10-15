@@ -42,24 +42,6 @@ describe('Contacts', () => {
     await $input.evaluate(element => element.value = '');
   }
 
-  // async function findElementByText($rootElement, text) {
-  //   const queue = [$rootElement];
-  //   while (queue.length > 0) {
-  //     const $element = queue.shift();
-  //     const text = await $element.evaluate(em => em.innerText);
-  //     console.log('>>> text', text);
-  //     if (text != null && text.includes(text)) {
-  //       return $element;
-  //     } else {
-  //       const $children = await $element.$$('> *');
-  //       console.log('>>> $children', $children)
-  //       for (const $child of $children) {
-  //         queue.push($child);
-  //       }
-  //     }
-  //   }
-  // }
-
   async function findElementByText($elements, query) {
     for (const $element of $elements) {
       const text = await getElementText($element);
@@ -68,6 +50,24 @@ describe('Contacts', () => {
       }
     }
     return null;
+  }
+
+  async function findChildElementByText($rootElement, text) {
+    const queue = [$rootElement];
+    while (queue.length > 0) {
+      const $element = queue.shift();
+      const text = await $element.evaluate(em => em.innerText);
+      console.log('>>> text', text);
+      if (text != null && text.includes(text)) {
+        return $element;
+      } else {
+        const $children = await $element.$$('> *');
+        console.log('>>> $children', $children)
+        for (const $child of $children) {
+          queue.push($child);
+        }
+      }
+    }
   }
 
   test('load', async () => {

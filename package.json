@@ -10,6 +10,7 @@
     "eject": "react-scripts eject",
     "format": "prettier --write 'src/**/*.js'",
     "cypress": "cypress open",
+    "cypress:headless": "cypress run",
     "jest": "jest --all --watch --no-watchman",
     "wdio": "wdio run wdio.conf.js --watch"
   },
@@ -53,6 +54,7 @@
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-wdio": "^5.13.2",
     "faker": "^4.1.0",
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
