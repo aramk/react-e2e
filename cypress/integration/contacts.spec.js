@@ -2,8 +2,8 @@
 
 context('Contacts', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000')
-  })
+    cy.visit('http://localhost:3000');
+  });
 
   describe('Contact List', () => {
     it('should load contacts', () => {
@@ -13,7 +13,7 @@ context('Contacts', () => {
         .should('contain', 'Abdul Gonzales')
         .should('contain', '(145) 551-5433')
         .should('contain', '592 Nulla St.')
-        .should('contain', 'Eugene')
+        .should('contain', 'Eugene');
     });
 
     it('should create a contact', () => {
@@ -23,7 +23,7 @@ context('Contacts', () => {
       cy.get('input[name="street"]').type('6840 Kingsroad Rd');
       cy.get('input[name="city"]').type('Casterly Rock');
       cy.get('button[type="submit"]').click();
-      
+
       // TODO Assert that the value exists.
     });
   });

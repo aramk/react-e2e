@@ -9,7 +9,7 @@ describe('Contacts', () => {
       .to.include('Abdul Gonzales')
       .to.include('(145) 551-5433')
       .to.include('592 Nulla St.')
-      .to.include('Eugene')
+      .to.include('Eugene');
   });
 
   it('should create a contact', () => {

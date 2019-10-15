@@ -13,7 +13,7 @@ async function getInputValue($element) {
 }
 
 async function clearInput($input) {
-  await $input.evaluate(element => element.value = '');
+  await $input.evaluate(element => (element.value = ''));
 }
 
 async function findElementByText($elements, query) {
@@ -54,4 +54,4 @@ module.exports = {
   findElementByText,
   findChildElementByText,
   setPage,
-}
+};

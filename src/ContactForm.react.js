@@ -21,7 +21,9 @@ export class ContactForm extends React.Component {
         {this.renderInput('city', 'City', contact.city)}
         {this.renderError()}
         <button type="submit">Save</button>
-        <button type="button" onClick={this.onCancel}>Cancel</button>
+        <button type="button" onClick={this.onCancel}>
+          Cancel
+        </button>
       </form>
     );
   }
@@ -68,7 +70,7 @@ export class ContactForm extends React.Component {
           assertTextValue(field, contact[field]);
         }
         onSave(contact);
-      } catch(err) {
+      } catch (err) {
         this.setState({error: err});
       }
     });

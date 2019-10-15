@@ -12,8 +12,20 @@ export class ContactItem extends React.Component {
         <div>
           {item.street}, {item.city}
         </div>
-        <button className="ContactItemEdit" key="edit" onClick={this.onEditClick}>Edit</button>
-        <button className="ContactItemDelete" key="delete" onClick={this.onDeleteClick}>Delete</button>
+        <button
+          className="ContactItemEdit"
+          key="edit"
+          onClick={this.onEditClick}
+        >
+          Edit
+        </button>
+        <button
+          className="ContactItemDelete"
+          key="delete"
+          onClick={this.onDeleteClick}
+        >
+          Delete
+        </button>
       </div>
     );
   }
@@ -22,7 +34,7 @@ export class ContactItem extends React.Component {
     const {onEditClick} = this.props;
     if (onEditClick) onEditClick(this.props.item);
   };
-  
+
   onDeleteClick = () => {
     const {onDeleteClick} = this.props;
     if (onDeleteClick) onDeleteClick(this.props.item);

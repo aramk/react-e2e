@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
-const {getElementTextBySelector,
+const {
+  getElementTextBySelector,
   getElementText,
   getInputValue,
   clearInput,
@@ -54,15 +55,21 @@ describe('Contacts', () => {
 
     const $list = await page.$('.ContactList');
     expect($list).toBeTruthy();
-    const $item = await findElementByText(await $list.$$('.ContactItem'), 'Tyrion Lannister');
+    const $item = await findElementByText(
+      await $list.$$('.ContactItem'),
+      'Tyrion Lannister',
+    );
     expect($item).toBeTruthy();
   });
 
   test('edit', async () => {
-    const $item = await findElementByText(await page.$$('.ContactItem'), 'Grady Bright');
+    const $item = await findElementByText(
+      await page.$$('.ContactItem'),
+      'Grady Bright',
+    );
     expect($item).toBeTruthy();
     $button = (await $item.$('.ContactItemEdit')).click();
-    
+
     await page.waitFor('.ContactForm');
     const title = await getElementTextBySelector('h1');
     expect(title).toEqual('Edit Contact');
@@ -87,10 +94,13 @@ describe('Contacts', () => {
     await $street.type('6840 Kingsroad Rd');
     await $city.type('Casterly Rock');
     await page.click('button[type="submit"]');
-    
+
     const $list = await page.$('.ContactList');
     expect($list).toBeTruthy();
-    const $item2 = await findElementByText(await $list.$$('.ContactItem'), 'Tyrion Lannister');
+    const $item2 = await findElementByText(
+      await $list.$$('.ContactItem'),
+      'Tyrion Lannister',
+    );
     const newText = await getElementText($item2);
     expect(newText.includes('Tyrion Lannister')).toBe(true);
     expect(newText.includes('Grady Bright')).toBe(false);

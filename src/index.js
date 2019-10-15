@@ -64,11 +64,15 @@ class App extends React.Component {
     return (
       <>
         <h1>Create Contact</h1>
-        <ContactForm contact={null} onSave={contact => this.onCreate(contact, history)} onCancel={() => this.routeHome(history)} />
+        <ContactForm
+          contact={null}
+          onSave={contact => this.onCreate(contact, history)}
+          onCancel={() => this.routeHome(history)}
+        />
       </>
     );
   };
-  
+
   renderEditForm = ({history, match}) => {
     const id = match.params.id;
     const contact = this.state.contacts.find(contact => contact.id === id);
@@ -80,38 +84,45 @@ class App extends React.Component {
     return (
       <>
         <h1>Edit Contact</h1>
-        <ContactForm contact={contact} onSave={contact => this.onEdit(contact, history)} onCancel={() => this.routeHome(history)} />
+        <ContactForm
+          contact={contact}
+          onSave={contact => this.onEdit(contact, history)}
+          onCancel={() => this.routeHome(history)}
+        />
       </>
     );
   };
 
-  renderError = (err) => {
+  renderError = err => {
     return <p>{err.toString()}</p>;
-  }
+  };
 
   renderErrorState = () => {
     const {error} = this.state;
     return error ? this.renderError(error.toString()) : null;
-  }
+  };
 
   onCreate = (contact, history) => {
     const newContact = {
       ...contact,
       id: getNextId(),
     };
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        contacts: [...prevState.contacts, newContact],
-      };
-    }, () => {
-      this.routeHome(history);
-    });
+    this.setState(
+      prevState => {
+        return {
+          ...prevState,
+          contacts: [...prevState.contacts, newContact],
+        };
+      },
+      () => {
+        this.routeHome(history);
+      },
+    );
   };
 
   routeHome = history => {
     history.push('/');
-  }
+  };
 
   onAddClick = history => {
     history.push('/tasks/create');
@@ -120,11 +131,11 @@ class App extends React.Component {
   onEditClick = (contact, history) => {
     history.push(`/tasks/${contact.id}/edit`);
   };
-  
+
   onDeleteClick = (contact, history) => {
     if (window.confirm('Are you sure you to remove this contact?')) {
       this.setState(prevState => {
-        debugger
+        debugger;
         const index = prevState.contacts.findIndex(c => c.id === contact.id);
         if (index === -1) {
           return createMissingContactErrorState(contact.id);
@@ -137,21 +148,24 @@ class App extends React.Component {
   };
 
   onEdit = (contact, history) => {
-    this.setState(prevState => {
-      const index = prevState.contacts.findIndex(c => c.id === contact.id);
-      if (index === -1) {
-        return createMissingContactErrorState(contact.id);
-      }
-      const contacts = prevState.contacts.slice();
-      contacts[index] = {...contact};
-      return {
-        ...prevState,
-        contacts,
-      };
-    }, () => {
-      this.routeHome(history);
-    });
-  }
+    this.setState(
+      prevState => {
+        const index = prevState.contacts.findIndex(c => c.id === contact.id);
+        if (index === -1) {
+          return createMissingContactErrorState(contact.id);
+        }
+        const contacts = prevState.contacts.slice();
+        contacts[index] = {...contact};
+        return {
+          ...prevState,
+          contacts,
+        };
+      },
+      () => {
+        this.routeHome(history);
+      },
+    );
+  };
 }
 
 function createMissingContactErrorState(id) {
