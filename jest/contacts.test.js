@@ -1,4 +1,11 @@
 const puppeteer = require('puppeteer');
+const {getElementTextBySelector,
+  getElementText,
+  getInputValue,
+  clearInput,
+  findElementByText,
+  setPage,
+} = require('./util');
 
 describe('Contacts', () => {
   let browser;
@@ -18,55 +25,13 @@ describe('Contacts', () => {
       userAgent: '',
     });
     await page.goto('http://localhost:3000');
+    setPage(page);
   });
 
   afterAll(async () => {
+    setPage(null);
     await browser.close();
   });
-
-  // TODO Move to utility function.
-
-  async function getElementTextBySelector(selector) {
-    return await getElementText(await page.$(selector));
-  }
-
-  async function getElementText($element) {
-    return await $element.evaluate(element => element.innerText);
-  }
-
-  async function getInputValue($element) {
-    return await $element.evaluate(element => element.value);
-  }
-
-  async function clearInput($input) {
-    await $input.evaluate(element => element.value = '');
-  }
-
-  async function findElementByText($elements, query) {
-    for (const $element of $elements) {
-      const text = await getElementText($element);
-      if (text != null && text.includes(query)) {
-        return $element;
-      }
-    }
-    return null;
-  }
-
-  async function findChildElementByText($rootElement, text) {
-    const queue = [$rootElement];
-    while (queue.length > 0) {
-      const $element = queue.shift();
-      const text = await $element.evaluate(em => em.innerText);
-      if (text != null && text.includes(text)) {
-        return $element;
-      } else {
-        const $children = await $element.$$('> *');
-        for (const $child of $children) {
-          queue.push($child);
-        }
-      }
-    }
-  }
 
   test('load', async () => {
     const text = await getElementTextBySelector('.ContactItem');
@@ -78,6 +43,7 @@ describe('Contacts', () => {
 
   test('create', async () => {
     await page.click('.ContactListAdd');
+    await page.waitFor('.ContactForm');
     const title = await getElementTextBySelector('h1');
     expect(title).toEqual('Create Contact');
     await page.type('input[name="name"]', 'Tyrion Lannister');
@@ -95,7 +61,9 @@ describe('Contacts', () => {
   test('edit', async () => {
     const $item = await findElementByText(await page.$$('.ContactItem'), 'Grady Bright');
     expect($item).toBeTruthy();
-    await $item.click();
+    $button = (await $item.$('.ContactItemEdit')).click();
+    
+    await page.waitFor('.ContactForm');
     const title = await getElementTextBySelector('h1');
     expect(title).toEqual('Edit Contact');
 
