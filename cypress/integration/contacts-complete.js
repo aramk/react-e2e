@@ -16,7 +16,14 @@ context('Contacts', () => {
         .should('contain', 'Eugene');
     });
 
-    // TODO Write a test for creating a contact.
-
+    it('should create a contact', () => {
+      cy.get('.ContactListAdd').click();
+      cy.get('input[name="name"]').type('Tyrion Lannister');
+      cy.get('input[name="phone"]').type('(571) 438-3991');
+      cy.get('input[name="street"]').type('6840 Kingsroad Rd');
+      cy.get('input[name="city"]').type('Casterly Rock');
+      cy.get('button[type="submit"]').click();
+      cy.contains('Tyrion Lannister').should('exist');
+    });
   });
 });

@@ -42,7 +42,25 @@ describe('Contacts', () => {
     expect(text).toEqual(expect.stringContaining('Eugene'));
   });
 
-  // TODO Write a test for creating a contact.
+  test('create', async () => {
+    await page.click('.ContactListAdd');
+    await page.waitFor('.ContactForm');
+    const title = await getElementTextBySelector('h1');
+    expect(title).toEqual('Create Contact');
+    await page.type('input[name="name"]', 'Tyrion Lannister');
+    await page.type('input[name="phone"]', '(571) 438-3991');
+    await page.type('input[name="street"]', '6840 Kingsroad Rd');
+    await page.type('input[name="city"]', 'Casterly Rock');
+    await page.click('button[type="submit"]');
+
+    const $list = await page.$('.ContactList');
+    expect($list).toBeTruthy();
+    const $item = await findElementByText(
+      await $list.$$('.ContactItem'),
+      'Tyrion Lannister',
+    );
+    expect($item).toBeTruthy();
+  });
 
   test('edit', async () => {
     const $item = await findElementByText(
