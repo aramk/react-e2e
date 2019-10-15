@@ -11,7 +11,7 @@
     "format": "prettier --write '**/*.js'",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
-    "jest": "jest --all --watch --no-watchman",
+    "jest": "jest --all --watchAll --no-watchman",
     "wdio": "wdio run wdio.conf.js --watch"
   },
   "repository": {
