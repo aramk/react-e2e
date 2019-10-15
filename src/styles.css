@@ -1,15 +1,49 @@
-.App {
-  font-family: sans-serif;
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background: #f6f7ee;
 }
 
-h1 {
+.App {
+  font-family: Helvetica, Arial, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.App h1 {
   text-align: center;
+  flex-shrink: 0;
+}
+
+.App button {
+  border: 0;
+  background: #ddd;
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.App button:hover {
+  filter: brightness(90%);
 }
 
 .ContactList {
   text-align: left;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 8px;
+  flex-grow: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .ContactListSearch {
@@ -17,25 +51,75 @@ h1 {
   flex-direction: row;
   align-items: center;
   margin-bottom: 20px;
-  vertical-align: center;
+  flex-shrink: 0;
+}
+
+.ContactListItems {
+  overflow: auto;
+  flex-grow: 1;
 }
 
 .ContactListSearch input {
   flex-grow: 1;
-  font-size: 12px;
-  padding: 3px 5px;
+  font-size: 14px;
+  padding: 7px;
   width: 200px;
-  vertical-align: center;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
 }
 
-.ContactListSearchLabel {
-  margin-right: 10px;
-}
-
-.ContactItem {
+.ContactItem, .ContactForm {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   border: 1px solid #ccc;
+  background: white;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
+}
+
+.ContactItem p {
+  margin-top: 0px;
+  margin-bottom: 4px;
+}
+
+.App .ContactListAdd {
+  margin-left: 8px;
+  margin-right: 0px;
+  background: #569cff;
+  color: white;
+  padding: 8px 16px;
+}
+
+.ContactItemEdit {
+  margin-right: 8px;
+}
+
+.ContactFormField {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.ContactFormField label {
+  width: 100px;
+  display: inline-block;
+  line-height: 33px;
+}
+
+.ContactFormField input {
+  font-size: 14px;
+  padding: 7px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.ContactFormButtons {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.FormError {
+  color: red;
 }

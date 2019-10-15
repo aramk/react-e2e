@@ -5,13 +5,13 @@ export class ContactItem extends React.Component {
     const {item} = this.props;
     return (
       <div className="ContactItem">
-        <div>
+        <p>
           <strong>{item.name}</strong>
-        </div>
-        <div>{item.phone}</div>
-        <div>
+        </p>
+        <p>{item.phone}</p>
+        <p>
           {item.street}, {item.city}
-        </div>
+        </p>
         <button
           className="ContactItemEdit"
           key="edit"

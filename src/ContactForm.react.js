@@ -20,10 +20,10 @@ export class ContactForm extends React.Component {
         {this.renderInput('street', 'Street', contact.street)}
         {this.renderInput('city', 'City', contact.city)}
         {this.renderError()}
-        <button type="submit">Save</button>
-        <button type="button" onClick={this.onCancel}>
-          Cancel
-        </button>
+        <div className="ContactFormButtons">
+          <button type="submit">Save</button>
+          <button type="button" onClick={this.onCancel}>Cancel</button>
+        </div>
       </form>
     );
   }

@@ -30,13 +30,15 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={this.renderList} />
-          <Route exact path="/tasks" component={this.renderList} />
-          <Route exact path="/tasks/create" component={this.renderCreateForm} />
-          <Route exact path="/tasks/:id/edit" component={this.renderEditForm} />
-          <Route component={this.render404} />
-        </Switch>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={this.renderList} />
+            <Route exact path="/tasks" component={this.renderList} />
+            <Route exact path="/tasks/create" component={this.renderCreateForm} />
+            <Route exact path="/tasks/:id/edit" component={this.renderEditForm} />
+            <Route component={this.render404} />
+          </Switch>
+        </div>
       </BrowserRouter>
     );
   }
@@ -135,7 +137,6 @@ class App extends React.Component {
   onDeleteClick = (contact, history) => {
     if (window.confirm('Are you sure you to remove this contact?')) {
       this.setState(prevState => {
-        debugger;
         const index = prevState.contacts.findIndex(c => c.id === contact.id);
         if (index === -1) {
           return createMissingContactErrorState(contact.id);

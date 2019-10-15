@@ -47,8 +47,7 @@ export class ContactList extends React.Component {
     return (
       <div className="ContactList">
         <div className="ContactListSearch" key="search">
-          <div className="ContactListSearchLabel">Search</div>
-          <input onChange={this.onSearchChange} />
+          <input onChange={this.onSearchChange} placeholder="Search" />
           <button className="ContactListAdd" onClick={this.props.onAddClick}>
             Add
           </button>
@@ -65,6 +64,4 @@ export class ContactList extends React.Component {
       query: event.currentTarget.value.trim(),
     });
   };
-
-  onAdd = () => {};
 }
