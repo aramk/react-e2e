@@ -6,7 +6,7 @@ describe('Contacts', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: true,
+      headless: false,
     });
     page = await browser.newPage();
     await page.setDefaultNavigationTimeout(16000);
@@ -57,12 +57,10 @@ describe('Contacts', () => {
     while (queue.length > 0) {
       const $element = queue.shift();
       const text = await $element.evaluate(em => em.innerText);
-      console.log('>>> text', text);
       if (text != null && text.includes(text)) {
         return $element;
       } else {
         const $children = await $element.$$('> *');
-        console.log('>>> $children', $children)
         for (const $child of $children) {
           queue.push($child);
         }
@@ -78,7 +76,7 @@ describe('Contacts', () => {
     expect(text).toEqual(expect.stringContaining('Eugene'));
   });
 
-  test.only('create', async () => {
+  test('create', async () => {
     await page.click('.ContactListAdd');
     const title = await getElementTextBySelector('h1');
     expect(title).toEqual('Create Contact');
@@ -94,7 +92,7 @@ describe('Contacts', () => {
     expect($item).toBeTruthy();
   });
 
-  test.only('edit', async () => {
+  test('edit', async () => {
     const $item = await findElementByText(await page.$$('.ContactItem'), 'Grady Bright');
     expect($item).toBeTruthy();
     await $item.click();

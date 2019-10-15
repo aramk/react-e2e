@@ -15,5 +15,16 @@ context('Contacts', () => {
         .should('contain', '592 Nulla St.')
         .should('contain', 'Eugene')
     });
+
+    it('should create a contact', () => {
+      cy.get('.ContactListAdd').click();
+      cy.get('input[name="name"]').type('Tyrion Lannister');
+      cy.get('input[name="phone"]').type('(571) 438-3991');
+      cy.get('input[name="street"]').type('6840 Kingsroad Rd');
+      cy.get('input[name="city"]').type('Casterly Rock');
+      cy.get('button[type="submit"]').click();
+      
+      // TODO Assert that the value exists.
+    });
   });
 });
